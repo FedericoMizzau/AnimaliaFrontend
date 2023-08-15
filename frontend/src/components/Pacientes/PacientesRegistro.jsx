@@ -31,9 +31,11 @@ const controlesTest = [
 
 const PacientesRegistro = ({
   accion,
-  pacienteActual,
-  grabarPaciente,
+  setAccion,
+  Item,
   regresarListado,
+  grabarPaciente,
+  pacienteActual
 }) => {
   const { width, height } = useScreensize();
   const [controles, setControles] = useState([]);
@@ -42,7 +44,7 @@ const PacientesRegistro = ({
     register,
     handleSubmit,
     formState: { errors, touchedFields, isValid, isSubmitted },
-  } = useForm({ values: pacienteActual });
+  } = useForm({ values: Item });
 
   const onSubmit = (data) => {
     grabarPaciente(data);
@@ -56,7 +58,7 @@ const PacientesRegistro = ({
 
   // useEffect para cargar los controles del paciente actual consultado
   useEffect(() => {
-    buscarControles(pacienteActual.id);
+    buscarControles(Item.id);
   }, []);
 
   function buscarControles(id) {
